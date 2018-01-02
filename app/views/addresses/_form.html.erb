@@ -1,0 +1,33 @@
+<%= form_for @address do |f|%>
+
+<%if @address.errors.any?%>
+	<h3>These errors prohibited the form </h3>
+	<ul>
+		<%@address.errors.full_messages.each do |msg|%>
+		<li><%=msg%></li>
+		<%end%>
+	</ul>
+	<%end%>
+	
+	<label for= "address_name"> Name : </label><br/>
+	<%= f.text_field :name, placeholder: "Enter name" %> <span id= "nameMsg"> </span> <br/>
+    
+    <label for= "address_street"> street : </label><br/>
+	<%= f.text_field :street, placeholder: " 1street, 2street "%><br/>
+
+	
+	<label for= "address_landmark"> Landmark: </label><br/>
+	<%= f.text_field :landmark,  placeholder: "Enter landmark"%><br/>
+	
+	<label for= "address_pincode"> pincode : </label><br/>
+	<%= f.number_field :pincode,  placeholder: "Enter pincode"%><br/>
+	
+
+	<label for=  "address_city"> City : </label><br/>
+	<%= f.text_field :city %><br/>
+
+	<%= f.submit%>
+
+	<%end%>
+
+

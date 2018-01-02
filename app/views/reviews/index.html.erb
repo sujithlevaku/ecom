@@ -1,0 +1,12 @@
+
+
+
+
+<h3>Your Reviews </h3>
+
+<% @reviews.each do |review| %>
+
+	<li><%=link_to review.product.name, product_path(review.product.id) %>--<%=review.body%> -<%= review.created_at%></li>
+
+
+	<%end%>

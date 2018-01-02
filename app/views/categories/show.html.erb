@@ -1,0 +1,27 @@
+<p><%= @category.name.capitalize%></p> 
+<%if (user_signed_in?) && (can? :update, @category)%>
+<p>
+	<%=link_to "Edit", edit_category_path(@category.id) %> | <%= link_to "Delete", category_path(@category.id), method: :delete, 
+	data: {confirm: "Are you Sure you want to delete this category #{@category.name}"} %>
+
+</p>
+<%end%>
+
+<%if @category.products.empty?%>
+	<p>No Products Found</p>
+	<%else%>
+	<h2>Listing Products (<%= @category.products.length%>)</h2>
+
+<ul>
+	<%@category.products.each do |product|%>
+
+	<li> <%= link_to product.name, product_path(product.id) %> - INR - <%= product.price%></li>
+<%end%>
+
+	</ul>
+	<%end%>
+
+<%if (user_signed_in?) && (can? :create, @category)%>
+
+		<%= link_to "ADD Product", new_product_path(category_id: @category.id)%>
+<%end%>

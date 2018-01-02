@@ -1,0 +1,44 @@
+
+
+<%if @products.empty?%>
+<h2>NO PRODUCTS FOUND (:</h2>
+
+
+<%else%>
+
+<h2>Listing Products(<%=@products.length%>)</h2>
+
+<ol>
+	<%@products.each do |product|%>
+	<li>
+	<%= link_to product.name.upcase, product_path(product)%> 
+	-INR <%=product.price%> 
+	- <%=product.description%> 
+		
+	<%if !product.category.nil? %>
+	- <%=product.category.name%>
+	<%end%>
+
+	<%if user_signed_in?%>
+		<%= form_for CartLineItem.new do |f|%>
+			<%= f.hidden_field :product_id, value: product.id%>
+			<%= f.hidden_field :quantity, value: 1%>
+			<%= f.submit "Add to cart"%>
+		<%end%>
+		<%= form_for @wishlist do |f|%>
+			<%= f.hidden_field :product_id, value: product.id%>
+			<%= f.submit "Move to Wishlist"%>
+		<%end%>
+
+	<%end%> 
+
+	
+
+	</li>
+	<%end%>
+</ol>
+<%end%>
+<%if (user_signed_in?) && (can? :create, Product.new)%>
+<%= link_to "Add Product",new_product_path%>
+<%end%>
+

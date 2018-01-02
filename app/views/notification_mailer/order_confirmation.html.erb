@@ -1,0 +1,15 @@
+<h1>Notification#order_confirmation</h1>
+
+<p>Hello <%= @order.user.username%>,<br/>
+Your order has been successfilly place. Total of the order is <%=@order.total%>
+</p>
+
+h2><%=@order.order_number%></h2>
+<h3> Order Date :<%=@order.order_date%> Total INR- <%=@order.total%></h3>
+<ol>
+		<%@order.order_line_items.each do |line_item|%>
+		<li>	<%= line_item.product.name%>- INR- <%=line_item.price%> - <%=line_item.quantity %> </li>
+		
+		<%end%>
+</ol>
+<p>Thank You  for shopping with us</p>

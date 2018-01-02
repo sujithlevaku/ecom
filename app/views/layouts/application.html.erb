@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ecom</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <style>
+
+      body {
+          background: url("../image.jpg");
+          background-size:cover;
+          background-repeat: no-repeat;
+          width: 100%;
+      }
+    </style>
+
+
+
+  </head>
+
+  <body>
+  <%if user_signed_in?%>
+  welcome : <%= current_user.username %> --
+  <%= link_to "My Cart (#{current_user.cart_line_items.pluck(:quantity).inject(:+)})",cart_line_items_path%> ||
+  <%= link_to "Your Orders(#{current_user.orders.size})" , orders_path %> ||
+  <%= link_to "My Wishlist(#{current_user.wishlists.size})",wishlists_path %>||
+  <%= link_to "My Addresses (#{current_user.addresses.size})", addresses_path%> || 
+  <%= link_to "My reviews" ,reviews_path %> ||
+  <%= link_to "Account Setting", edit_user_registration_path%> || 
+  <%= link_to "Logout", destroy_user_session_path, method: :delete%> ||  
+  <%else%>
+  <%= link_to "Register", new_user_registration_path%> ||<%=link_to "Login", new_user_session_path%>
+  <%end%>
+  <%= link_to "Categories", categories_path%> |
+
+  <%= link_to "Products",products_path%> <br/>
+       <%= notice %></p>
+       <%= alert %></p>
+
+  <%= yield %> 
+   <%if user_signed_in?%>
+   <p> Your Current IP (<%= current_user.current_sign_in_ip %>)</p> <%= current_user.inspect%>
+   <%end%>
+  </body>
+</html>

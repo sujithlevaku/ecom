@@ -1,0 +1,18 @@
+
+<%if @categories.empty?%>
+<h2>NO CATEGORIES FOUND (:</h2>
+<%else%>
+
+<h2>Listing Categories (<%= @categories.length%>)</h2>
+
+<ol>
+	<% @categories.each do |category| %>
+	<li><%= link_to category.name.capitalize, category_path(category.id)%> - (<%= category.products.length %>)</li>
+	<%end%>
+</ol>
+<%end%>
+<%if (user_signed_in?) && (can? :create, @product)%>
+
+<%=link_to "Add Category" ,new_category_path %>
+
+<%end%>

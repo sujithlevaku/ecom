@@ -1,0 +1,13 @@
+<div align="center">
+<h1>Hello World!!</h1>
+</div>
+<% fruits = ["mango", "pineapple", "apple", "watermelon", "papaya", "pear", "kiwi", "banana", "orange", "grapes", "guava"] %> <!-- evaluation tag -->
+<h3> listing fruits (<%= fruits.length %>)<!-- presentation tag --></h3>
+<ol>
+	<% fruits.sort.each do |item| %>
+	<li><%= item.capitalize %></li>
+	<%end%>
+</ol>
+
+
+<a href="/say/goodbye" >visit good bye </a>|<a href="http://www.google.com" target="_blank">goolge</a>

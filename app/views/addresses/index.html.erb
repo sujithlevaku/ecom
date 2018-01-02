@@ -1,0 +1,28 @@
+
+
+
+
+
+<h2> Select Delivery Address</h2>
+
+
+<%= form_for Order.new do |f|%>
+	<ol>
+		<% current_user.addresses.each do |address|%>
+			<li>
+				<label for= "address_id"> <%=address.name.upcase%> </label>
+				<%= f.radio_button :address_id,address.id%>
+				<%= address.street%> ,<%=address.landmark%>, <%= address.pincode%>, <%=address.city%> <br/>
+				<%= link_to "Edit", edit_address_path(address) %> |
+				 <%= link_to "Delete ", address_path(address.id), method: :delete, data: {confirm: "ARE YOU SURE?"}%>
+			</li><br/>
+		<%end%>	
+			<%=f.submit "Conform Order"%> 
+	</ol>
+<%end%>
+
+
+
+
+
+<%= link_to "Add Address", new_address_path%>

@@ -1,0 +1,20 @@
+<h2>Product name : <%=link_to @review.product.name , product_path(@review.product_id)%></h2>
+
+<h4><%=@review.body %> - Rating - <%= @review.rating %></h4>
+
+<h3>Other Reviews for this Product</h3>
+<ol>
+<%@review.product.reviews.each do |review| %>
+	<%if @review.id == review.id%>
+		<%next%>
+
+	<%else%>
+		<li> <%= review.body %> - <%= review.rating%> </li>
+	
+	<%end%>
+
+<%end%>
+</ol>
+
+
+
