@@ -1,5 +1,5 @@
  	class ReviewsController < ApplicationController
-	before_action :authenticate_user! 
+	before_action :authenticate_user! , except: [:index,:show]
 	load_and_authorize_resource
 
 	def index
@@ -46,7 +46,7 @@
 
 private 
 def review_params
-	(params[:review].permit(:body,:product_id,:rating))
+	params[:review].permit(:body,:product_id,:rating)
 end
 
 end
