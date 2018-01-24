@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :orders
   resources :coupons
   resources :brands
-  devise_for :users
+  devise_for :users, controllers: { confirmations: 'confirmations' }
   resources :reviews
   resources :categories
   resources :products 
