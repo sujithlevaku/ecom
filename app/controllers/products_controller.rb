@@ -10,6 +10,7 @@ class ProductsController < ApplicationController
 	def index
 		@products = Product.all
 		@wishlist = Wishlist.new
+		#render json: @products
 	end
 
 	#url - http://localhost:3000/products/new

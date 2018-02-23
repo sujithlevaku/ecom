@@ -20,7 +20,7 @@
 	<%end%>
 
 	<%if user_signed_in?%>
-		<%= form_for CartLineItem.new do |f|%>
+		<%= form_for(CartLineItem.new , remote: true) do |f|%>
 			<%= f.hidden_field :product_id, value: product.id%>
 			<%= f.hidden_field :quantity, value: 1%>
 			<%= f.submit "Add to cart"%>

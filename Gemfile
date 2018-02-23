@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+source 'https://rails-assets.org'
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
@@ -12,9 +12,17 @@ gem 'devise'
 gem 'friendly_id'
 gem 'cancancan'
 gem 'pry'
+gem 'rails-assets-growl'
+
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3', group: :development
-gem 'pg', group: :production
+group :development do 
+
+gem 'sqlite3'
+end
+
+group :production do
+gem 'pg' 
+end
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets

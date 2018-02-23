@@ -7,6 +7,15 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"> </script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js" type="text/javascript"></script>
+<script src="javascript/jquery.growl.js" type="text/javascript"></script>
+<link href="stylesheets/jquery.growl.css" rel="stylesheet" type="text/css" />    
+
+    
+
     <style>
 
       body {
@@ -22,9 +31,13 @@
   </head>
 
   <body>
+
+
+
+  
   <%if user_signed_in?%>
   welcome : <%= current_user.username %> --
-  <%= link_to "My Cart (#{current_user.cart_line_items.pluck(:quantity).inject(:+)})",cart_line_items_path%> ||
+  <%= link_to "My Cart (#{current_user.cart_line_items.pluck(:quantity).inject(:+)})",cart_line_items_path, id: "cartItem"%> ||
   <%= link_to "Your Orders(#{current_user.orders.size})" , orders_path %> ||
   <%= link_to "My Wishlist(#{current_user.wishlists.size})",wishlists_path %>||
   <%= link_to "My Addresses (#{current_user.addresses.size})", addresses_path%> || 

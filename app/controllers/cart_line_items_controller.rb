@@ -9,7 +9,7 @@ class CartLineItemsController < ApplicationController
 		# @cart_line_item.save_or_update({user: current_user.id,product: @cart_line_item.product_id})
 		# 	redirect_to cart_line_items_path, notice: "Successfully added the product to the cart "
 		@cart_line_item.save_or_update
-			redirect_to cart_line_items_path, notice: "Successfully added the product to the cart "
+			#redirect_to cart_line_items_path, notice: "Successfully added the product to the cart "
 
 	end
 
