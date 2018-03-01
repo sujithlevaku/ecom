@@ -11,8 +11,7 @@
 // about supported directives.
 
 
-//= require jquery
-//= require growl
+
 
 //
 //= require rails-ujs

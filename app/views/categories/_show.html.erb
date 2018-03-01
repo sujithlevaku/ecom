@@ -1,0 +1,57 @@
+
+
+      		<div class="row">
+      			<% @category.products.each do |product|%>
+
+      			<div class="col-lg-4 col-md-6 mb-4">
+      				<div class="card h-100">
+      					<%=link_to image_tag(product.feature_image_url,class: "card-img-top" , size: "600x350"), product %>
+      					<div class="card-body">
+      						<h4 class="card-title">
+      							<%=link_to product.name, product%>
+      						</h4>
+      						<h5>$<%=product.price %></h5>
+      						<p class="card-text"><%=product.description.truncate(100)%></p>
+
+
+      						<%if user_signed_in?%>
+      							<%= form_for(CartLineItem.new , remote: true) do |f|%>
+    	  						<%= f.hidden_field :product_id, value: product.id%>
+	      						<%= f.hidden_field :quantity, value: 1%>
+      							<%= f.submit "Add to cart" ,class: "btn btn-warning"%>
+      						<%end%>
+      						<%= form_for Wishlist.new do |f|%>
+	      						<%= f.hidden_field :product_id, value: product.id%>
+      							<%= f.submit "Move to Wishlist" ,class: "btn btn-info"%>
+      						<%end%>
+
+      						<%end%> 
+
+      					</div>
+      					<div class="card-footer">
+      						<small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734; </small>              <% if product.reviews.any?%>
+              <%= (product.reviews.pluck(:rating).inject(:+)/product.reviews.count).floor %>.0 stars
+              <%else%>
+              0.0 
+              <%end%>
+
+      					</div>
+      				</div>
+      			</div>
+
+      			<%end%>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      		</div>

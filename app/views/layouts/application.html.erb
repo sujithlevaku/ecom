@@ -1,40 +1,61 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Ecom</title>
-    <%= csrf_meta_tags %>
+<head>
+  <title>Ecom</title>
+  <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"> </script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"> </script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js" type="text/javascript"></script>
-<script src="javascript/jquery.growl.js" type="text/javascript"></script>
-<link href="stylesheets/jquery.growl.css" rel="stylesheet" type="text/css" />    
+    <script src="/javascripts/bootstrap.js" ></script>
+    <script src="/javascripts/jquery.js" ></script>
 
-    
-
-    <style>
-
-      body {
-          background: url("../image.jpg");
-          background-size:cover;
-          background-repeat: no-repeat;
-          width: 100%;
-      }
-    </style>
+  <link href="/stylesheets/bootstrap.css" rel="stylesheet" />
+  <link href="/stylesheets/shop-homepage.css" rel="stylesheet"/>
 
 
 
-  </head>
 
-  <body>
+  <script src="/javascripts/jquery.growl.js" ></script>
+  <link href="/stylesheets/jquery.growl.css" rel="stylesheet"/>
 
 
 
-  
+  <script src="/javascripts/jquery-ui.js" ></script>
+  <link href="/stylesheets/jquery-ui.css" rel="stylesheet"/>
+
+  <script src="/javascripts/alertify.js"></script>
+  <link href="/stylesheets/alertify.css" rel="stylesheet"/>
+
+
+  <script src="/javascripts/chosen.jquery.js"></script>
+  <link href="/stylesheets/chosen.css" rel="stylesheet"/>
+
+
+
+
+  <style>
+
+    body {
+      background: url("../image.jpg");
+      background-size:cover;
+      background-repeat: no-repeat;
+      width: 99%;
+    }
+  </style>
+
+
+
+</head>
+
+<body>
+
+<div class="container">
+
+<%= render "layouts/nav"%>
   <%if user_signed_in?%>
   welcome : <%= current_user.username %> --
   <%= link_to "My Cart (#{current_user.cart_line_items.pluck(:quantity).inject(:+)})",cart_line_items_path, id: "cartItem"%> ||
@@ -50,12 +71,22 @@
   <%= link_to "Categories", categories_path%> |
 
   <%= link_to "Products",products_path%> <br/>
-       <%= notice %></p>
-       <%= alert %></p>
-
+  <%= notice %></p>
+  <%= alert %></p>
   <%= yield %> 
-   <%if user_signed_in?%>
-   <p> Your Current IP (<%= current_user.current_sign_in_ip %>)</p> <%= current_user.inspect%>
-   <%end%>
-  </body>
+</div>
+
+<!-- Footer -->
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+
+  <%if user_signed_in?%>
+  <p> Your Current IP (<%= current_user.current_sign_in_ip %>)</p> <%= current_user.inspect%>
+  <%end%>
+</body>
 </html>

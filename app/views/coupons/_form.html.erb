@@ -23,10 +23,18 @@
 
   <div class="field">
     <%= form.label :expiry_date %>
-    <%= form.datetime_select :expiry_date, id: :coupon_expiry_date %>
+    <%= form.text_field :expiry_date, id: :coupon_expiry_date %>
   </div>
 
   <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>
+
+ <script>
+  $(document).ready(function(){
+    $('#coupon_expiry_date').datepicker({
+      dateFormat: "yy-mm-dd", changeMonth: true, minDate: 0,maxDate: 30,numberOfMonths: 2
+    });
+  });
+  </script>

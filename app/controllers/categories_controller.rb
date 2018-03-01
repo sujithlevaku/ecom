@@ -17,6 +17,7 @@ load_and_authorize_resource # invokes ability class
 
 	end
 	def show
+		
 		@category = Category.find(params[:id])
 
 	end

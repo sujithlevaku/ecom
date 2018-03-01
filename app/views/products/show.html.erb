@@ -1,3 +1,111 @@
+      <div class="row">
+
+        <div class="col-lg-3">
+          <h1 class="my-4">Shop Name</h1>
+          <div class="list-group">
+            <a href="#" class="list-group-item active">Category 1</a>
+            <a href="#" class="list-group-item">Category 2</a>
+            <a href="#" class="list-group-item">Category 3</a>
+          </div>
+        </div>
+        <!-- /.col-lg-3 -->
+
+        <div class="col-lg-9">
+
+          <div class="card mt-4">
+          <%= image_tag(@product.feature_image_url, class: "card-img-top img-fluid", size: "900x400" )%>
+            <div class="card-body">
+              <h3 class="card-title"><%=@product.name%></h3>
+              <h4>$<%= @product.price%></h4>
+              <p class="card-text"><%=@product.description%></p>
+	           <div class="form-group">   
+	              <%if user_signed_in? %>
+	              <%= form_for(CartLineItem.new, remote: true) do |f|%>
+	              <label> Quantity :</label>
+	              <%= f.select :quantity , [1,2,3,4,5] , class: "form-control"%><br/>
+	              <%= f.hidden_field :product_id, value: @product.id%>
+	              <%= f.submit "Add to cart" ,class: "btn btn-warning"%>
+	              <%end%>
+	              <%else%>
+	              <p> You need to signin before adding products to cart</p>
+	              <%end%>
+	              </div>
+
+
+
+
+
+              <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span> 
+              <% if @product.reviews.any?%>
+              <%= (@product.reviews.pluck(:rating).inject(:+)/@product.reviews.count).floor %>.0 stars
+              <%else%>
+              0.0 
+              <%end%>
+            </div>
+          </div>
+          <!-- /.card -->
+
+          <div class="card card-outline-secondary my-4">
+            <div class="card-header">
+              Product Reviews
+            </div>
+            <div class="card-body">
+
+
+            	<%if @product.reviews.empty?%>
+            	<p>No reviews found be the first one to review </p>
+            	<%else%>
+            	<ol id= "reviewList">
+            		<%@product.reviews.each do |review|%>
+            		<li id="review_<%= review.id%>">
+            		<p><%=link_to review.body, review_path(review) %> </p>
+            			<%if (user_signed_in?) && (can? :update, review)%>
+            			<%= link_to "destroy" , review_path(review.id), method: :delete, data: {confirm: "Are you sure you want to delete review "},remote: true %> | <%= link_to "Edit", edit_review_path(review.id)%>	
+            		</li>
+            		<%end%>
+            		<small class="text-muted">Posted by <%=review.user.username%> on 3/1/17</small>
+              <hr>
+            		<%end%>
+            	</ol>
+            	<%end%>
+
+
+            	<p id= "reviewNotice"></p>
+            	<h3>Add Review</h3>
+            	<div id="reviewError" ></div>
+            	<%= form_for(@review, remote: true) do |f|%>
+            	<label for = "review_body"> Body : </label><br/>
+            	<%= f.text_area :body %> <br/>
+            	<%= f.hidden_field :product_id,value: @product.id%><br/>
+
+            	<label> Rating </label><br/>
+            	<%= f.radio_button :rating, 1 %> 1
+            	<%= f.radio_button :rating, 2 %> 2
+            	<%= f.radio_button :rating, 3 %> 3
+            	<%= f.radio_button :rating, 4 %> 4
+            	<%= f.radio_button :rating, 5 %> 5 <br/>
+            	<%= f.submit "Leave a Review" ,class: "btn btn-success" %>
+            	<%end%>              
+            </div>
+          </div>
+          <!-- /.card -->
+
+        </div>
+        <!-- /.col-lg-9 -->
+
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
 <p><%= @product.name.upcase%></p>
 
 <%=@product.cod_eligible ? "cod eligible" : "cod not eligible" %>
@@ -74,4 +182,4 @@
 
 
 
-<%= link_to "List Products" , products_path %>
+<%#= link_to "List Products" , products_path %> -->
