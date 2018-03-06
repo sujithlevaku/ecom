@@ -1,4 +1,6 @@
+
       <div class="row">
+
 
       	<div class="col-lg-3">
 
@@ -15,7 +17,7 @@
 
       	<div class="col-lg-9" , id="productList">
 
-      		<div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
+      		<div id="carouselExampleIndicators" class="carousel slide my-4 container-fluid" data-ride="carousel">
       			<ol class="carousel-indicators">
       				<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
       				<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -27,24 +29,24 @@
       			<div class="carousel-inner" role="listbox">
 
       				<div class="carousel-item active">
-      					<img class="d-block img-fluid" src="https://sonovideo.com/wp-content/uploads/2014/07/CANON-EF-LENS-900X350.jpg" alt="First slide">
+      					<img class="d-block  " src="https://sonovideo.com/wp-content/uploads/2014/07/CANON-EF-LENS-900X350.jpg" alt="First slide">
       				</div>
 
       				<div class="carousel-item">
-      					<img class="d-block img-fluid" src="https://cdn.pp.slimpay.com/blog/2016/12/06192933/DZN-Blog-Hero-900x350-SuccessfulBusiness_v2.jpg" alt="Second slide">
+      					<img class="d-block  " src="https://cdn.pp.slimpay.com/blog/2016/12/06192933/DZN-Blog-Hero-900x350-SuccessfulBusiness_v2.jpg" alt="Second slide">
       				</div>
 
       				<div class="carousel-item">
-      					<img class="d-block img-fluid" src="https://www.wearewhatweeat.co.nz/content/dam/wawwe/Recipes/recipe-serving-suggestions-tile-900x350/berry-easy-cheesecake-900x350.jpg" alt="Third slide">
+      					<img class="d-block  " src="https://www.wearewhatweeat.co.nz/content/dam/wawwe/Recipes/recipe-serving-suggestions-tile-900x350/berry-easy-cheesecake-900x350.jpg" alt="Third slide">
       				</div>
 
       				<div class="carousel-item">
-      					<img class="d-block img-fluid" src="http://blog.blacklotus9.com/blog/wp-content/uploads/2013/06/AdidasBasketball2013_JoyBluePink.jpg" alt="Third slide">
+      					<img class="d-block  " src="http://blog.blacklotus9.com/blog/wp-content/uploads/2013/06/AdidasBasketball2013_JoyBluePink.jpg" alt="Third slide">
       				</div>
       				
 
       				<div class="carousel-item">
-      					<img class="d-block img-fluid" src="http://glowingthoughts.com/wp-content/uploads/2017/11/specs_preview-I-PHONE-X.png" alt="Third slide">
+      					<img class="d-block " src="http://glowingthoughts.com/wp-content/uploads/2017/11/specs_preview-I-PHONE-X.png" alt="Third slide">
       				</div>
 
       			</div>
@@ -61,7 +63,7 @@
       		<div class="row">
       			<%@products.each do |product|%>
 
-      			<div class="col-lg-4 col-md-6 mb-4">
+      			<div class="col-lg-4 col-md-2 mb-4">
       				<div class="card h-100">
       					<%=link_to image_tag(product.feature_image_url,class: "card-img-top" , size: "600x350"), product %>
       					<div class="card-body">
@@ -70,7 +72,6 @@
       						</h4>
       						<h5>$<%=product.price %></h5>
       						<p class="card-text"><%=product.description.truncate(100)%></p>
-
 
       						<%if user_signed_in?%>
       							<%= form_for(CartLineItem.new , remote: true) do |f|%>
@@ -84,6 +85,8 @@
       						<%end%>
 
       						<%end%> 
+
+
 
       					</div>
       					<div class="card-footer">
@@ -99,17 +102,6 @@
       			</div>
 
       			<%end%>
-
-
-
-
-
-
-
-
-
-
-
 
 
 

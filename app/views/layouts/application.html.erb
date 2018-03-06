@@ -19,6 +19,8 @@
 
 
 
+
+
   <script src="/javascripts/jquery.growl.js" ></script>
   <link href="/stylesheets/jquery.growl.css" rel="stylesheet"/>
 
@@ -56,7 +58,7 @@
 <div class="container">
 
 <%= render "layouts/nav"%>
-  <%if user_signed_in?%>
+ <!--  <%if user_signed_in?%>
   welcome : <%= current_user.username %> --
   <%= link_to "My Cart (#{current_user.cart_line_items.pluck(:quantity).inject(:+)})",cart_line_items_path, id: "cartItem"%> ||
   <%= link_to "Your Orders(#{current_user.orders.size})" , orders_path %> ||
@@ -70,7 +72,7 @@
   <%end%>
   <%= link_to "Categories", categories_path%> |
 
-  <%= link_to "Products",products_path%> <br/>
+  <%= link_to "Products",products_path%> <br/> -->
   <%= notice %></p>
   <%= alert %></p>
   <%= yield %> 
@@ -84,9 +86,5 @@
       <!-- /.container -->
     </footer>
 
-
-  <%if user_signed_in?%>
-  <p> Your Current IP (<%= current_user.current_sign_in_ip %>)</p> <%= current_user.inspect%>
-  <%end%>
 </body>
 </html>

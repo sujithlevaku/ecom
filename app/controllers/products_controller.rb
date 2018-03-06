@@ -49,7 +49,6 @@ class ProductsController < ApplicationController
 	#http methods - post
 	# roles & responsibility -to find the product from the date dase and display it on the show page 
 	def show
-		
 		@product = Product.find(params[:id])		
 		@review = Review.new
 

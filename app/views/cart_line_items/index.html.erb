@@ -53,11 +53,17 @@
 
 			</tbody>
 
-		</table>
-							<h3>Cart Total : <%=total %> <h3>
+		</table>			
+							<div class="float-right"  >
+							<h3>Cart Total :<big> <b><%=total%></b> </big> <h3>
 							<h3> <%= link_to "Proceed to Checkout ",addresses_path , class: "btn btn-success"%></h3>
+							</div>
 
 <%end%>
+
+	<div  style="padding-bottom: 90px"></div>
+
+
 <!--- 
 <%= form_for Order.new do |f|%>
 	<ol>
