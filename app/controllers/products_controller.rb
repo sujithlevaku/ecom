@@ -8,8 +8,14 @@ class ProductsController < ApplicationController
 	# roles & responsibility - to list all products 
 
 	def index
+		if params[:search]
+      	@products = Product.search(params[:search]).order("created_at DESC")
+
+
+    	else
 		@products = Product.all
 		@wishlist = Wishlist.new
+	end
 		#render json: @products
 	end
 

@@ -16,6 +16,11 @@ class Product < ApplicationRecord
 	validates_length_of :description, minimum: 5
 	
 
+	def self.search(search)
+  # Title is for the above case, the OP incorrectly had 'name'
+  where("name LIKE ?", "%#{search}%")
+end
+
 
 
 end
